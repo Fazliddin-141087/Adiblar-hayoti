@@ -3,11 +3,14 @@ package uz.mobiler.adiblarhayoti
 import android.R
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,6 +50,8 @@ class AddFragment : Fragment() {
     private  var imgUrl:String?=null
     lateinit var typeList:ArrayList<String>
     lateinit var list: ArrayList<Literature>
+    private val TAG = "AddFragment"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,6 +62,7 @@ class AddFragment : Fragment() {
         firebaseStorage= FirebaseStorage.getInstance()
         reference=firebaseStorage.getReference("images/")
 
+        list= ArrayList()
 
         typeList= ArrayList()
         typeList.add("Mumtoz")
@@ -75,7 +81,7 @@ class AddFragment : Fragment() {
         binding.addImageBtn.setOnClickListener {
             askPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) {
 
-
+                getImageContent.launch("image/*")
 
             }.onDeclined { e ->
                 if (e.hasDenied()) {
@@ -97,25 +103,87 @@ class AddFragment : Fragment() {
                 }
             }
 
-
         }
 
-
-
-
-    Snackbar.make(binding.root,"ooo",Snackbar.LENGTH_LONG).show()
 
         binding.addBtn.setOnClickListener {
+            val name = binding.addName.text.toString().trim()
+            val birth = binding.addBirthdayYears.text.toString().trim()
+            val die = binding.addDiedYears.text.toString().trim()
+            val genre = binding.ganre.text.toString().trim()
+            val desc = binding.addDescriptions.text.toString().trim()
 
+            if (imgUrl!=null){
+                if (name.isNotEmpty() && birth.isNotEmpty() && die.isNotEmpty() && genre.isNotEmpty() && desc.isNotEmpty()){
+                    if (isName(name)){
+                        var literature=Literature(name,birth,die, genre,desc,imgUrl,false)
+                        firebaseFirestore.collection("adib").document(name).set(literature)
+                            .addOnSuccessListener {
+                                findNavController().popBackStack()
+                                Snackbar.make(binding.root,"Saqlandi!!!",Snackbar.LENGTH_LONG).show()
+                            }.addOnFailureListener { e->
+                        Snackbar.make(binding.root,"Xatolik::  ${e.message}",Snackbar.LENGTH_LONG).show()
+                            }
+
+                    }else{
+                        Snackbar.make(binding.root,"Bunday ism mavjud",Snackbar.LENGTH_LONG).show()
+                    }
+
+                }else{
+                    Snackbar.make(binding.root,"Iltimos bo'sh maydonlarni to'ldiring?",Snackbar.LENGTH_LONG).show()
+                }
+            }else{
+                Snackbar.make(binding.root,"Iltimos rasim qo'shing!!!",Snackbar.LENGTH_LONG).show()
+            }
         }
+
+        firebaseFirestore.collection("adib").get()
+            .addOnCompleteListener {
+                if (it.isSuccessful){
+                    val result = it.result
+                    result?.forEach { queryDocumentSnapshot ->
+                        val literature = queryDocumentSnapshot.toObject(Literature::class.java)
+                            list.add(literature)
+                    }
+                }
+            }.addOnFailureListener { e->
+                Log.d(TAG, "onCreateView: ${e.message}")
+            }
 
 
         return binding.root
     }
 
 
+    private fun isName(name:String):Boolean {
+        var isHas=true
+        for (i in 0 until list.size){
+            if (name.equals(list[i].name,true)){
+                isHas=false
+            }
+        }
+        return isHas
+    }
 
 
+    private var getImageContent=registerForActivityResult(ActivityResultContracts.GetContent()){ uri->
+        if (uri!=null){
+            binding.addImage.setImageURI(uri)
+            var millis=System.currentTimeMillis()
+            val uploadTask = reference.child(millis.toString()).putFile(uri)
+            uploadTask.addOnSuccessListener {
+                if (it.task.isSuccessful){
+                    val downloadUrl = it.metadata?.reference?.downloadUrl
+                    downloadUrl?.addOnSuccessListener { img->
+                        imgUrl=img.toString()
+                    }
+                }
+            }.addOnFailureListener { error->
+                Log.d(TAG, "failure: ${error.message} ")
+            }
+        }
+
+    }
 
     companion object {
         /**

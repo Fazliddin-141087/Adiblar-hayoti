@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.florent37:runtime-permission-kotlin:1.1.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f0bcf6e5f0fad70bd228dc3db09c0a4d/transformed/jetified-runtime-permission-kotlin-1.1.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f0bcf6e5f0fad70bd228dc3db09c0a4d/transformed/jetified-runtime-permission-kotlin-1.1.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f0bcf6e5f0fad70bd228dc3db09c0a4d/transformed/jetified-runtime-permission-kotlin-1.1.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7b18ae6821845c64a0990d3a255d2e37/transformed/jetified-runtime-permission-kotlin-1.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7b18ae6821845c64a0990d3a255d2e37/transformed/jetified-runtime-permission-kotlin-1.1.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7b18ae6821845c64a0990d3a255d2e37/transformed/jetified-runtime-permission-kotlin-1.1.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

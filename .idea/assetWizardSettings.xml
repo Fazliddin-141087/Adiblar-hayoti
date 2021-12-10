@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_add_24" />
-                            <entry key="sourceFile" value="D:\ANDROID NETWORING (FIREBASA)\Lesson 5\Pictures\Vectorinfo.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_vectoronlike" />
+                            <entry key="sourceFile" value="D:\ANDROID NETWORING (FIREBASA)\Lesson 5\Pictures\Vectoronlike.svg" />
                           </map>
                         </option>
                       </PersistentState>

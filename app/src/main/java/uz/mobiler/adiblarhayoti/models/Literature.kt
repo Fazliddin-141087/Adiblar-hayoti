@@ -5,7 +5,8 @@ import java.io.Serializable
 class Literature :Serializable {
 
     var name:String?=null
-    var years:String?=null
+    var birthYear:String?=null
+    var dieYear:String?=null
     var type:String?=null
     var descriptions:String?=null
     var imageUrl:String?=null
@@ -15,18 +16,21 @@ class Literature :Serializable {
 
     constructor(
         name: String?,
-        years: String?,
+        birthYear: String?,
+        dieYear: String?,
         type: String?,
         descriptions: String?,
         imageUrl: String?,
         like: Boolean?
     ) {
         this.name = name
-        this.years = years
+        this.birthYear = birthYear
+        this.dieYear = dieYear
         this.type = type
         this.descriptions = descriptions
         this.imageUrl = imageUrl
         this.like = like
     }
+
 
 }
