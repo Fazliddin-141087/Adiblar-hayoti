@@ -71,7 +71,6 @@
             <com.google.android.material.tabs.TabLayout
                 style="@style/stiles_text"
                 android:id="@+id/tab_layout"
-                app:tabMode="auto"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:layout_marginStart="15dp"
@@ -97,7 +96,7 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    
+
 
 
 </LinearLayout>

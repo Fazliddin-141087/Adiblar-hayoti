@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="250dp"
     android:backgroundTint="@color/white"
     app:cardCornerRadius="15dp"
     app:cardElevation="3dp"
@@ -19,15 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:adjustViewBounds="true"
+            android:contentDescription="@string/todo"
             android:scaleType="fitXY"
-            android:src="@drawable/adibs"
-            android:contentDescription="@string/todo" />
+            android:src="@drawable/adibs" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="1.7"
             android:baselineAligned="false">
 
             <LinearLayout
@@ -35,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="15dp"
+                android:padding="12dp"
                 tools:ignore="NestedWeights">
 
                 <TextView
@@ -45,7 +44,7 @@
                     android:layout_weight="1"
                     android:text="@string/o_tkir_hoshimov"
                     android:textColor="#303236"
-                    android:textSize="25sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     tools:ignore="NestedWeights" />
 
@@ -56,7 +55,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="@string/_1923_2019"
-                    android:textSize="17sp" />
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
@@ -66,22 +65,22 @@
                 android:layout_weight="4"
                 android:gravity="center|top">
 
-                <com.like.LikeButton
-                    android:id="@+id/like_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="15dp"
-                    app:anim_scale_factor="2"
-                    app:circle_end_color="@color/black"
-                    app:circle_start_color="@color/green"
-                    app:dots_primary_color="@color/black"
-                    app:dots_secondary_color="@color/green"
-                    app:icon_size="25dp"
-                    app:icon_type="Start"
-                    app:is_enabled="false"
-                    app:like_drawable="@drawable/ic_vectoronlike"
-                    app:liked="false"
-                    app:unlike_drawable="@drawable/ic_vectorlike" />
+                <!--                <com.like.LikeButton-->
+                <!--                    android:id="@+id/like_btn"-->
+                <!--                    android:layout_width="40dp"-->
+                <!--                    android:layout_height="40dp"-->
+                <!--                    android:layout_marginTop="15dp"-->
+                <!--                    app:anim_scale_factor="2"-->
+                <!--                    app:circle_end_color="@color/black"-->
+                <!--                    app:circle_start_color="@color/green"-->
+                <!--                    app:dots_primary_color="@color/black"-->
+                <!--                    app:dots_secondary_color="@color/green"-->
+                <!--                    app:icon_size="25dp"-->
+                <!--                    app:icon_type="Start"-->
+                <!--                    app:is_enabled="false"-->
+                <!--                    app:like_drawable="@drawable/ic_vectoronlike"-->
+                <!--                    app:liked="false"-->
+                <!--                    app:unlike_drawable="@drawable/ic_vectorlike" />-->
 
             </LinearLayout>
 

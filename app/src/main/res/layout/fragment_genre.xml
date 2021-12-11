@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GenreFragment">
 
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+        android:id="@+id/shimmer_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_demo_angle="10"
+        app:shimmer_demo_child_count="2"
+        app:shimmer_demo_grid_child_count="2"
+        app:shimmer_demo_layout="@layout/item_genre"
+        app:shimmer_demo_layout_manager_type="grid"
+        app:shimmer_demo_reverse_animation="true"
+        app:shimmer_demo_view_holder_item_background="@drawable/bg_card"
+        />
 
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
