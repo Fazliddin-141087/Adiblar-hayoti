@@ -33,7 +33,11 @@
         android:id="@+id/likeFragment"
         android:name="uz.mobiler.adiblarhayoti.LikeFragment"
         android:label="fragment_like"
-        tools:layout="@layout/fragment_like" />
+        tools:layout="@layout/fragment_like" >
+        <action
+            android:id="@+id/action_likeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="uz.mobiler.adiblarhayoti.SettingsFragment"
@@ -47,10 +51,27 @@
         android:id="@+id/genreFragment"
         android:name="uz.mobiler.adiblarhayoti.GenreFragment"
         android:label="fragment_genre"
-        tools:layout="@layout/fragment_genre" />
+        tools:layout="@layout/fragment_genre" >
+        <action
+            android:id="@+id/action_genreFragment_to_finishFragment"
+            app:destination="@id/finishFragment" />
+        <action
+            android:id="@+id/action_genreFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="uz.mobiler.adiblarhayoti.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/finishFragment"
+        android:name="uz.mobiler.adiblarhayoti.FinishFragment"
+        android:label="fragment_finish"
+        tools:layout="@layout/fragment_finish" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="uz.mobiler.adiblarhayoti.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

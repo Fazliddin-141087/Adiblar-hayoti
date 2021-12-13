@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.firestore.FirebaseFirestore
@@ -62,6 +63,9 @@ class HomeFragment : Fragment() {
         setTab()
 
 
+        binding.searchBtn.setOnClickListener {
+            findNavController().navigate(R.id.searchFragment)
+        }
 
         return binding.root
     }
@@ -111,6 +115,7 @@ class HomeFragment : Fragment() {
 
 
     }
+
 
 
     companion object {

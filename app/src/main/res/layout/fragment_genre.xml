@@ -9,14 +9,15 @@
     <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/shimmer_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.97"
+        app:layout_constraintTop_toTopOf="parent"
         app:shimmer_demo_angle="10"
         app:shimmer_demo_child_count="2"
         app:shimmer_demo_grid_child_count="2"
         app:shimmer_demo_layout="@layout/item_genre"
         app:shimmer_demo_layout_manager_type="grid"
         app:shimmer_demo_reverse_animation="true"
-        app:shimmer_demo_view_holder_item_background="@drawable/bg_card"
-        />
+        app:shimmer_demo_view_holder_item_background="@drawable/bg_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

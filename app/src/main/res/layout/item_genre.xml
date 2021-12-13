@@ -62,25 +62,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:gravity="center|top">
 
-                <!--                <com.like.LikeButton-->
-                <!--                    android:id="@+id/like_btn"-->
-                <!--                    android:layout_width="40dp"-->
-                <!--                    android:layout_height="40dp"-->
-                <!--                    android:layout_marginTop="15dp"-->
-                <!--                    app:anim_scale_factor="2"-->
-                <!--                    app:circle_end_color="@color/black"-->
-                <!--                    app:circle_start_color="@color/green"-->
-                <!--                    app:dots_primary_color="@color/black"-->
-                <!--                    app:dots_secondary_color="@color/green"-->
-                <!--                    app:icon_size="25dp"-->
-                <!--                    app:icon_type="Start"-->
-                <!--                    app:is_enabled="false"-->
-                <!--                    app:like_drawable="@drawable/ic_vectoronlike"-->
-                <!--                    app:liked="false"-->
-                <!--                    app:unlike_drawable="@drawable/ic_vectorlike" />-->
+                <ImageButton
+                    android:id="@+id/like_btn"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/circle_serch_style3"
+                    android:src="@drawable/ic_vectorlike" />
 
             </LinearLayout>
 
