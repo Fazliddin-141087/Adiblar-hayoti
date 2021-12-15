@@ -15,12 +15,11 @@ class GenreAdapters(var list: ArrayList<Literature>,var myItemOnClickListener: M
     inner class Vh(var  itemGenreBinding: ItemGenreBinding) :RecyclerView.ViewHolder(itemGenreBinding.root) {
         @SuppressLint("SetTextI18n")
         fun onBind(literature: Literature,position: Int){
+
             Picasso.get().load(literature.imageUrl).into(itemGenreBinding.img)
             itemGenreBinding.nameTv.text=literature.name
             itemGenreBinding.years.text="(${literature.birthYear} - ${literature.dieYear})"
 
-//            itemGenreBinding.likeBtn.setBackgroundResource(R.drawable.circle_serch_style3)
-//            itemGenreBinding.likeBtn.setImageResource(R.drawable.ic_vectorlike)
 
             if (literature.like==true){
                 itemGenreBinding.likeBtn.setImageResource(R.drawable.ic_vectoronlike)

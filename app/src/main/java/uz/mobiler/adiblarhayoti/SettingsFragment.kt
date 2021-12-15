@@ -1,11 +1,14 @@
 package uz.mobiler.adiblarhayoti
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import uz.mobiler.adiblarhayoti.databinding.FragmentSettingsBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,14 +49,26 @@ class SettingsFragment : Fragment() {
 
 
         binding.shareCard.setOnClickListener {
-
+            var intent=Intent(Intent.ACTION_SEND)
+            var shareBody="Adiblar hayoti va ijodi\n"+"https://play.google.com/store/apps/details?id=uz.mobiler.adiblar"
+            intent.type="text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT,shareBody)
+            startActivity(Intent.createChooser(intent,"Ulashish"))
         }
 
 
         binding.infoCard.setOnClickListener {
-
+            var materialAlertDialogBuilder=MaterialAlertDialogBuilder(binding.root.context)
+            val dialog = materialAlertDialogBuilder.create()
+           materialAlertDialogBuilder.setTitle("Biz haqimizda!!!")
+            materialAlertDialogBuilder.setMessage("\nVersion: 1.0.0\n\nCompany: Mobiler\n\nMail: uzmobiler@gmail.com\n\nPhone: +998 97 007 96 20")
+            materialAlertDialogBuilder.setPositiveButton("Ok",object :DialogInterface.OnClickListener{
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+                    dialog.cancel()
+                }
+            })
+            materialAlertDialogBuilder.show()
         }
-
 
         return binding.root
     }

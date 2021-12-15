@@ -77,7 +77,6 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="15dp"
                 app:tabRippleColor="@null"
-                app:barrierMargin="0dp"
                 android:background="@drawable/tablayout_style"
                 android:layout_marginBottom="3dp"
                 app:tabIndicator="@null"
@@ -85,18 +84,28 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <ProgressBar
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:elevation="15dp"
+            android:layout_gravity="center"
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_home"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
-
+            android:layout_height="match_parent" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
 
 </LinearLayout>

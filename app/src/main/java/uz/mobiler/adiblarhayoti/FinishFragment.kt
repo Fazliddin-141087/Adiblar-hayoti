@@ -53,7 +53,6 @@ class FinishFragment : Fragment() {
         emphasisTextView = EmphasisTextView(binding.root.context)
         firebaseFirestore = FirebaseFirestore.getInstance()
 
-
         val literature = arguments?.getSerializable("literature") as Literature
 
         setHasOptionsMenu(true)
@@ -64,8 +63,8 @@ class FinishFragment : Fragment() {
             binding.text.text = literature.descriptions
             Picasso.get().load(literature.imageUrl).into(binding.image)
             if (literature.like == true) {
-                binding.save.setBackgroundResource(R.drawable.circle_serch_style)
                 binding.save.setImageResource(R.drawable.ic_vectoronlike)
+                binding.save.setBackgroundResource(R.drawable.circle_serch_style2)
             }
 
 
@@ -80,14 +79,16 @@ class FinishFragment : Fragment() {
             })
 
             binding.save.setOnClickListener {
-                if (literature.like == true) {
-                    like(false, literature.name!!)
-                    binding.save.setBackgroundResource(R.drawable.circle_serch_style)
+                if (literature.like==false){
+                    literature.like=true
+                    firebaseFirestore.collection("adib").document(literature.name!!).update("like",true)
+                   binding.save.setImageResource(R.drawable.ic_vectoronlike)
+                    binding.save.setBackgroundResource(R.drawable.circle_serch_style2)
+                }else {
+                    literature.like=false
+                    firebaseFirestore.collection("adib").document(literature.name!!).update("like",false)
+                    binding.save.setBackgroundResource(R.drawable.circle_serch_style3)
                     binding.save.setImageResource(R.drawable.ic_vectorlike)
-                } else {
-                    like(true, literature.name!!)
-                    binding.save.setBackgroundResource(R.drawable.circle_serch_style)
-                    binding.save.setImageResource(R.drawable.ic_vectoronlike)
                 }
             }
 
@@ -131,23 +132,6 @@ class FinishFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    private fun like(isChek: Boolean, name: String) {
-        firebaseFirestore.collection("adib").document(name).get()
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    val result = it.result
-                    val literature = result.toObject(Literature::class.java)
-                    if (isChek) {
-                        literature?.like = false
-                        firebaseFirestore.collection("adib").document(name).set(literature!!)
-                    } else if (!isChek) {
-                        literature?.like = true
-                        firebaseFirestore.collection("adib").document(name).set(literature!!)
-                    }
-                }
-            }
     }
 
 

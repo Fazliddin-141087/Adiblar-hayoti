@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.item_tab.view.*
 import uz.mobiler.adiblarhayoti.adapters.GenreViewPagerAdapter
 import uz.mobiler.adiblarhayoti.databinding.FragmentHomeBinding
+import uz.mobiler.adiblarhayoti.utils.NetworkHelper
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,31 +42,42 @@ class HomeFragment : Fragment() {
     lateinit var genreViewPagerAdapter: GenreViewPagerAdapter
     lateinit var firebaseFirestore: FirebaseFirestore
     lateinit var list: ArrayList<String>
+    lateinit var networkHelper: NetworkHelper
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        networkHelper= NetworkHelper(binding.root.context)
+
         firebaseFirestore = FirebaseFirestore.getInstance()
         list= ArrayList()
 
-        genreViewPagerAdapter = GenreViewPagerAdapter(requireActivity())
-        binding.viewPagerHome.adapter = genreViewPagerAdapter
+        if (networkHelper.isNetworkConnected()){
 
+            binding.progressBar.visibility=View.GONE
 
-        TabLayoutMediator(
-            binding.tabLayout, binding.viewPagerHome
-        ) { tab, position ->
+            genreViewPagerAdapter = GenreViewPagerAdapter(requireActivity())
+            binding.viewPagerHome.adapter = genreViewPagerAdapter
 
-        }.attach()
+            TabLayoutMediator(
+                binding.tabLayout, binding.viewPagerHome
+            ) { tab, position ->
 
-        setTab()
+            }.attach()
 
+            setTab()
 
-        binding.searchBtn.setOnClickListener {
-            findNavController().navigate(R.id.searchFragment)
+            binding.searchBtn.setOnClickListener {
+                findNavController().navigate(R.id.searchFragment)
+            }
+
+        }else{
+            binding.progressBar.visibility=View.VISIBLE
         }
+
 
         return binding.root
     }

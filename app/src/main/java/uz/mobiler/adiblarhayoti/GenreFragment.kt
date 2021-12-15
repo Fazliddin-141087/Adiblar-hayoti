@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import uz.mobiler.adiblarhayoti.adapters.GenreAdapters
 import uz.mobiler.adiblarhayoti.databinding.FragmentGenreBinding
 import uz.mobiler.adiblarhayoti.models.Literature
+import uz.mobiler.adiblarhayoti.utils.NetworkHelper
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,7 +40,6 @@ class GenreFragment : Fragment() {
     lateinit var genreAdapters: GenreAdapters
     lateinit var firebaseFirestore: FirebaseFirestore
     lateinit var list: ArrayList<Literature>
-
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,37 +48,37 @@ class GenreFragment : Fragment() {
         binding= FragmentGenreBinding.inflate(layoutInflater)
 
         firebaseFirestore= FirebaseFirestore.getInstance()
-
         list= ArrayList()
 
-        firebaseFirestore.collection("adib").get()
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    list.clear()
-                    val result = it.result
-                    result?.forEach { queryDocumentSnapshot ->
-                        val literature = queryDocumentSnapshot.toObject(Literature::class.java)
-                        when(param1){
-                            0->{
-                                if (literature.type!!.equals("Mumtoz",true)){
-                                    list.add(literature)
+            firebaseFirestore.collection("adib").get()
+                .addOnCompleteListener {
+                    if (it.isSuccessful){
+                        list.clear()
+                        val result = it.result
+                        result?.forEach { queryDocumentSnapshot ->
+                            val literature = queryDocumentSnapshot.toObject(Literature::class.java)
+                            when(param1){
+                                0->{
+                                    if (literature.type!!.equals("Mumtoz",true)){
+                                        list.add(literature)
+                                    }
                                 }
-                            }
-                            1->{
-                                if (literature.type!!.equals("O'zbek",true)){
-                                    list.add(literature)
+                                1->{
+                                    if (literature.type!!.equals("O'zbek",true)){
+                                        list.add(literature)
+                                    }
                                 }
-                            }
-                            2->{
-                                if (literature.type.equals("Jahon",true)){
-                                    list.add(literature)
+                                2->{
+                                    if (literature.type.equals("Jahon",true)){
+                                        list.add(literature)
+                                    }
                                 }
                             }
                         }
+                        genreAdapters.notifyDataSetChanged()
                     }
-                    genreAdapters.notifyDataSetChanged()
                 }
-            }
+
 
         genreAdapters= GenreAdapters(list,object :GenreAdapters.MyItemOnClickListener{
             override fun itemOnClick(literature: Literature, position: Int) {
@@ -116,6 +116,8 @@ class GenreFragment : Fragment() {
         super.onResume()
         genreAdapters.notifyDataSetChanged()
     }
+
+
 
 
     companion object {
